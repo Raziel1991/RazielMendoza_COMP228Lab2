@@ -1,4 +1,4 @@
-import javax.swing.*;
+
 import java.security.SecureRandom;
 import java.util.Scanner;
 
@@ -14,7 +14,7 @@ public class Main {
 
         //RUN
         System.out.println("Hello World!");
-        //test.inputAnswer(random, sc, 5);
+        test.inputAnswer(random, sc, 5);
         loto.runLotto(sc, random, 5);
 
         sc.close();
