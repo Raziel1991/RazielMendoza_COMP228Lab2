@@ -10,10 +10,13 @@ public class Main {
         SecureRandom random = new SecureRandom();
         Test test = new Test();
         Scanner sc = new Scanner(System.in);
+        Lotto loto = new Lotto(random);
 
         //RUN
         System.out.println("Hello World!");
-        test.inputAnswer(random, sc, 5);
+        //test.inputAnswer(random, sc, 5);
+        loto.runLotto(sc, random, 5);
+
         sc.close();
     }
 }
