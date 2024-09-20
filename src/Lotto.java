@@ -16,7 +16,6 @@ public class Lotto {
     }
 
     public void runLotto(Scanner scanner,SecureRandom random, int maxRolls) {
-        int counter = 0;
         //input and screenstuff 1 time
         // TODO:change it to JOptionPane
         System.out.println("Enter a Number between 3 and 27");
