@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.security.SecureRandom;
-import java.util.Random;
 import java.util.Scanner;
 
 
@@ -27,7 +26,9 @@ public class Test {
 
         for(int i = 0; i < numberOfTimes; i++){
             simulateQuestion(rand);
-            System.out.println("Type Answer: ");
+            //System.out.println("Type Answer: ");
+
+
             char answer = sc.next().charAt(0);
             //TODO : check if the type in char is in the array of CorrectAnswers // todo: make the check a method
             System.out.println(checkAnswer(answer, rand));
@@ -37,13 +38,15 @@ public class Test {
         //one time
         System.out.println("Number of Correct Answers: " + correctCounter);
         System.out.println("Number of Wrong Answers: " + wrongCounter);
-        System.out.println("Percentage accuracy " + + (double) correctCounter/numberOfTimes * 100 + "%");
+        System.out.println("Percentage accuracy "  + (double) correctCounter/numberOfTimes * 100 + "%");
     }
 
     //Method to simulate the questions
     public static void simulateQuestion(SecureRandom rand){
         System.out.println(Questions[rand.nextInt(Questions.length)] + BlockAnswers);
     }
+
+
 
     //Method to check the answer
     public String checkAnswer(char answer, SecureRandom rand){

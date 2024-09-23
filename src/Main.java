@@ -1,4 +1,4 @@
-
+import javax.swing.*;
 import java.security.SecureRandom;
 import java.util.Scanner;
 
@@ -10,13 +10,12 @@ public class Main {
         SecureRandom random = new SecureRandom();
         Test test = new Test();
         Scanner sc = new Scanner(System.in);
-        Lotto loto = new Lotto(random);
+        Lotto mylotto = new Lotto(random);
 
         //RUN
         System.out.println("Hello World!");
-        test.inputAnswer(random, sc, 5);
-        loto.runLotto(sc, random, 5);
-
+        //test.inputAnswer(random, sc, 5);
+        mylotto.runLotto(random, 5);
         sc.close();
     }
 }
