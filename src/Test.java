@@ -1,6 +1,6 @@
 import javax.swing.*;
 import java.security.SecureRandom;
-import java.util.Scanner;
+
 
 
 public class Test {
@@ -48,7 +48,7 @@ public class Test {
     //Method to check the answer
     private String checkAnswer(int answer, SecureRandom rand){
         // sets a correct answer into the char variable for comparing it with user input
-        int correctAnswers = rand.nextInt(1,4);
+        int correctAnswers = rand.nextInt(1,5);
 
         // leaving enhanced and regular switch for a future consultation
         if (answer == correctAnswers){
@@ -60,7 +60,7 @@ public class Test {
                 case 1 -> (RightAnswers[1]);
                 case 2 -> (RightAnswers[2]);
                 case 3 -> (RightAnswers[3]);
-                // default case will not trigger, although the logic can be simplified by within the if else statement is required for lab evaluation
+                // default case will not trigger, although the logic can be simplified by within the if else statement, this is required for lab evaluation
                 default -> "";
             };
 
@@ -73,7 +73,7 @@ public class Test {
                 case 1: return(WrongAnswers[1]);
                 case 2: return(WrongAnswers[2]);
                 case 3: return(WrongAnswers[3]);
-                // default case will not trigger, although the logic can be simplified by within the if else statement is required for lab evaluation
+                // default case will not trigger, although the logic can be simplified by within the if else statement, this is required for lab evaluation
                 default: return"";
             }
 
