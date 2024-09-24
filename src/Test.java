@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 
 public class Test {
-    private static final char[] CorrectAnswers = {'a', 'b', 'c', 'd'};
+
     private static final String[] Questions = {"What is a Class?",
                                                "What is an Instance of a Class?",
                                                "What is a Static Method?", "Declare a Secure Random Integer",
@@ -17,48 +17,45 @@ public class Test {
     private  int wrongCounter = 0;
 
     // method to call into the main class
-    public void inputAnswer(SecureRandom rand, Scanner sc, int numberOfTimes){
-        StringBuilder allTextToPane = new StringBuilder();
-        for(int i = 0; i < Questions.length; i++){
-            allTextToPane.append(Questions[i]).append("\n");
+    public void runTest(SecureRandom rand, int numberOfTimes){
+        welcomeStart();
+        startTest(numberOfTimes, rand);
+        JOptionPane.showMessageDialog(null, "Number of Correct Answers: " + correctCounter +
+                "\nNumber of Wrong Answers: " + wrongCounter +
+                "\nPercentage accuracy "  + (double) correctCounter/numberOfTimes * 100 + "%");
+    }
+
+
+    // starts the quiz
+    private void startTest(int numberOfQuestions, SecureRandom rand){
+        String[] options = {" a ", " b ", " c ", " d "};
+        for(int i = 0; i < numberOfQuestions; i++){
+            int choice = JOptionPane.showOptionDialog(null,
+                    simulateQuestion(rand),
+                    "Test",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.INFORMATION_MESSAGE,
+                    null, options, options[0]);
+            JOptionPane.showMessageDialog(null, checkAnswer(choice, rand));
         }
-        JOptionPane.showMessageDialog(null, allTextToPane.toString());
-
-        for(int i = 0; i < numberOfTimes; i++){
-            simulateQuestion(rand);
-            //System.out.println("Type Answer: ");
-
-
-            char answer = sc.next().charAt(0);
-            //TODO : check if the type in char is in the array of CorrectAnswers // todo: make the check a method
-            System.out.println(checkAnswer(answer, rand));
-            System.out.println("-------------------");
-            System.out.println();
-        }
-        //one time
-        System.out.println("Number of Correct Answers: " + correctCounter);
-        System.out.println("Number of Wrong Answers: " + wrongCounter);
-        System.out.println("Percentage accuracy "  + (double) correctCounter/numberOfTimes * 100 + "%");
     }
 
     //Method to simulate the questions
-    public static void simulateQuestion(SecureRandom rand){
-        System.out.println(Questions[rand.nextInt(Questions.length)] + BlockAnswers);
+    private static String simulateQuestion(SecureRandom rand){
+        return Questions[rand.nextInt(Questions.length)];
     }
-
-
-
+    
     //Method to check the answer
-    public String checkAnswer(char answer, SecureRandom rand){
+    private String checkAnswer(int answer, SecureRandom rand){
         // sets a correct answer into the char variable for comparing it with user input
-        char correctAnswers = CorrectAnswers[rand.nextInt(CorrectAnswers.length)];
+        int correctAnswers = rand.nextInt(1,4);
 
         // leaving enhanced and regular switch for a future consultation
         if (answer == correctAnswers){
             this.correctCounter ++;
 
             //enhanced switch
-            return switch (rand.nextInt(CorrectAnswers.length)) {
+            return switch (correctAnswers) {
                 case 0 -> (RightAnswers[0]);
                 case 1 -> (RightAnswers[1]);
                 case 2 -> (RightAnswers[2]);
@@ -84,14 +81,33 @@ public class Test {
 
     }
 
+    //Welcome Pane logic. Handles options from the first window.
+    private static void welcomeStart(){
+        int choiceWelcome;
+        choiceWelcome = JOptionPane.showConfirmDialog(null,"This will start the test", "My test",JOptionPane.YES_NO_CANCEL_OPTION);
+        switch(choiceWelcome){
+            case JOptionPane.YES_OPTION:
+                break;
+            case JOptionPane.NO_OPTION:
+                JOptionPane.showMessageDialog(null,"Good Bye");
+                System.exit(0);
+                break;
+            case JOptionPane.CLOSED_OPTION:
+                System.exit(0);
+                break;
+            case JOptionPane.CANCEL_OPTION:
+                System.exit(0);
+                break;
+        }
+    }
+
+
 
     //Created the getters to test the code before completing the assignment
     public static String getBlockAnswers() {
         return BlockAnswers;
     }
-    public static char[] getCorrectAnswers() {
-        return CorrectAnswers;
-    }
+
 
     public static String[] getQuestions() {
         return Questions;

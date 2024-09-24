@@ -21,7 +21,7 @@ public class Lotto {
         int lottoPayout;
         int minNumber = 3;
         int maxNumber = 27;
-        //Setting user input ----  try and catch in case user inputs a non integer
+        //Setting user input ----  try and catch in case user inputs a non integer or out of range ints
         while (userNumber < minNumber || userNumber > maxNumber){
             userInput = JOptionPane.showInputDialog(null, "Enter a Number between " + minNumber + " and " + maxNumber);
             try {
